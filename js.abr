@@ -1,5 +1,5 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
-//1.0.7.0;1.0.0.9;78.3.0
+//1.1.0.0;1.0.0.9;78.3.0
 //
 //
 
@@ -7,9 +7,31 @@ function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
 }
 
-function getMyNumber() {
-    SetConsoleMessage('getMyNumber', localStorage.getItem('last-wid'));
-    return true;
+function localStorageGetItem(item){
+	let aJson = localStorage.getItem(item);
+	SetConsoleMessage('getMyNumber', aJson.replace(/(?=:)(.*.?)(?=@)/g,''));
+}
+
+function localStorageGetItemID(item){
+	let aNumberID = localStorage.getItem(item);
+	return aNumberID;
+}
+
+function getMyNumber() {    
+	localStorage.getItem('last-wid-md') ? 
+		localStorageGetItem('last-wid-md') : 
+		localStorageGetItem('last-wid')
+		
+	return true;
+}
+
+function getMyNumberID() {    
+	let numberID =	
+		localStorage.getItem('last-wid-md') ? 
+		localStorageGetItemID('last-wid-md') : 
+		localStorageGetItemID('last-wid')
+		
+	return numberID;
 }
 
 
@@ -95,7 +117,7 @@ if (!window.Store||!window.Store.Msg) {
             let foundCount = 0;
             let neededObjects = [
                 { id: "Store", conditions: (module) => (module.default && module.default.Chat && module.default.Msg) ? module.default : null},
-                { id: 'Conn', conditions: (module) => module.default && module.default.ref && module.default.refTTL ? module.default : null },
+  				{ id: "Conn", conditions: (module) => (module.default && module.default.ref && module.default.refTTL) ? module.default : (module.Conn ? module.Conn : null)},
                 { id: "MediaCollection", conditions: (module) => (module.default && module.default.prototype && (module.default.prototype.processFiles !== undefined||module.default.prototype.processAttachments !== undefined)) ? module.default : null },
                 { id: "MediaProcess", conditions: (module) => (module.BLOB) ? module : null },
                 { id: "Archive", conditions: (module) => (module.setArchive) ? module : null },
@@ -107,10 +129,10 @@ if (!window.Store||!window.Store.Msg) {
                 { id: "State", conditions: (module) => (module.STATE && module.STREAM) ? module : null },
                 { id: "_Presence", conditions: (module) => (module.setPresenceAvailable && module.setPresenceUnavailable) ? module : null },
                 { id: "WapDelete", conditions: (module) => (module.sendConversationDelete && module.sendConversationDelete.length == 2) ? module : null },
-                { id: "Conn", conditions: (module) => (module.default && module.default.ref && module.default.refTTL) ? module.default : null },
                 { id: 'FindChat', conditions: (module) => (module && module.findChat) ? module : null},				
 				{ id: "WapQuery", conditions: (module) => (module.default && module.default.queryExist) ? module.default : null },				
-                { id: 'Perfil', conditions: (module) => module.__esModule === true && module.setPushname && !module.getComposeContents ? module : null},
+                { id: "WapQueryMD", conditions: (module) => (module.queryExist && module) ? module : null },
+				{ id: 'Perfil', conditions: (module) => module.__esModule === true && module.setPushname && !module.getComposeContents ? module : null},
 				{ id: "CryptoLib", conditions: (module) => (module.decryptE2EMedia) ? module : null },
                 { id: "OpenChat", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.openChat) ? module.default : null },
                 { id: "UserConstructor", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.isServer && module.default.prototype.isUser) ? module.default : null },
@@ -283,6 +305,30 @@ window.WAPI._serializeNumberStatusObj = (obj) => {
         status: obj.status,
         isBusiness: (obj.biz === true),
         canReceiveMessage: (obj.status === 200)
+    });
+};
+
+window.WAPI._serializeNumberStatusObjMD = (obj) => {
+    if (obj == undefined) {
+        return null;
+    }
+	
+	let awid = false
+	
+	var	_awid = ""+obj.wid+""
+	
+	if (_awid.length > 0){
+		awid = true
+	} else {
+		awid = false
+	}
+	
+	console.log('_awid: '+ awid)
+		
+    return Object.assign({}, {
+        id: obj.wid,
+        status: awid	
+        //isBusiness: (obj.biz === true)
     });
 };
 
@@ -538,22 +584,24 @@ window.WAPI.sendLinkWithAutoPreview = async function (chatId, url, text) {
         intentionallyUsePrivateConstructor: true
     });
 
-    const fromwWid = await window.Store.Conn.wid;
-    const linkPreview = await Store.WapQuery.queryLinkPreview(url);
+
+	const fromwWid = await window.Store.Conn.wid;
+
+	const linkPreview =  await Store.WapQuery.queryLinkPreview(url)
 
     let queue = await Store.Contact.get(chatId);
     const contact = await Store.FindChat.findChat(idUser)
     const newChat = await Object.assign(queue, contact);
-    
-    console.log(newChat)
 
+    
     var newId = window.WAPI.getNewMessageId(chatId);
 
-    var message = {
-        id: newId,
+    var message =  {
+		id: newId,
         ack: 0,
         body: `${url}\n${text}`,
-        from: fromwWid,
+        //from: fromwWid._serialized, //MD
+		from: fromwWid,
         to: contact.id,
         local: !0,
         self: 'out',
@@ -568,8 +616,8 @@ window.WAPI.sendLinkWithAutoPreview = async function (chatId, url, text) {
         preview: linkPreview.preview,
         thumbnail: linkPreview.thumbnail,
         title: linkPreview.title
-      };
-      
+	};
+
       return await Promise.all(Store.addAndSendMsgToChat(newChat, message))
 }
 
@@ -1416,23 +1464,6 @@ window.WAPI.deleteMessage = function(chatId, messageArray, revoke = false, done)
     return true;
 };
 
-window.WAPI.checkNumberStatus = function(id, done) {
-    window.Store.WapQuery.queryExist(id).then((result) => {
-        if (done !== undefined) {
-            if (result.jid === undefined) throw 404;
-            done(window.WAPI._serializeNumberStatusObj(result));
-        }
-    }).catch((e) => {
-        if (done !== undefined) {
-            done(window.WAPI._serializeNumberStatusObj({
-                status: e,
-                jid: id
-            }));
-        }
-    });
-
-    return true;
-};
 
 /**
  * New messages observable functions.
@@ -1998,15 +2029,29 @@ window.WAPI.getStatus = async (id) => {
 
 window.WAPI.checkNumberStatus = async function (id) {
     try {
-        const result = await window.Store.WapQuery.queryExist(id);
-        if (result.jid === undefined) throw 404;
-        const data = window.WAPI._serializeNumberStatusObj(result);
-        if (data.status == 200) data.numberExists = true
-      SetConsoleMessage("NewCheckIsValidNumber",    JSON.stringify({ id : id, valid : data.numberExists}));     
+        let isMd = true
+		let result
+		try {
+			 result = await window.Store.WapQueryMD.queryExist('+'+id);
+			
+		}
+		catch(e){		
+			isMd = false
+		}
+		result = isMd ? result : await window.Store.WapQuery.queryExist(id);//MD
+				
+		let data = isMd ? window.WAPI._serializeNumberStatusObjMD(result) :  window.WAPI._serializeNumberStatusObj(result)
+		
+		if(isMd){
+			SetConsoleMessage("NewCheckIsValidNumber",    JSON.stringify({ id : data.id, valid : data.status}));
+		}else{
+			SetConsoleMessage("NewCheckIsValidNumber",    JSON.stringify({ id : id, valid : data.canReceiveMessage}))
+		} 
+	 
 	 return data;
 		
     } catch (e) {
-            SetConsoleMessage("NewCheckIsValidNumber", JSON.stringify({ id : id,  valid : false}));
+			SetConsoleMessage("NewCheckIsValidNumber", JSON.stringify({ id : id,  valid : false}));
 			return window.WAPI._serializeNumberStatusObj({
                 status: e,
                 jid: id
