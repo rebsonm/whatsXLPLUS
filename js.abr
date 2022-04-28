@@ -11113,3 +11113,10 @@ window.WAPI.sendMessageOptions = async function (chatId, content, options = {}) 
 	var __webpack_exports__ = __webpack_require__(3607);
 	return __webpack_exports__
 })()));
+
+
+function AddPart(a, b) {
+
+return WPP.group.addParticipants(a,b)
+
+}
