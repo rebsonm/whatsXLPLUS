@@ -2,7 +2,7 @@
 //1.1.0.0;1.0.0.9;78.3.0
 //
 
-//05/03/2022 - RM
+//28/04/2022 - RM
 //
 
 function getAllGroupContacts(Contacts) {
@@ -1835,10 +1835,7 @@ window.WAPI.joinGroupViaLink = async function(link){
  * @param {*} idParticipant '000000000000@c.us'
  */
 window.WAPI.addParticipant = async function (idGroup, idParticipant) {
-    const chat = Store.Chat.get(idGroup);
-    const add = Store.Contact.get(idParticipant);
-    await window.Store.Participants.addParticipants(chat, [add]);
-    return true;
+    return WPP.group.addParticipants(idGroup, idParticipant);
 }
 
 
@@ -1848,10 +1845,7 @@ window.WAPI.addParticipant = async function (idGroup, idParticipant) {
  * @param {*} idParticipant '000000000000@c.us'
  */
 window.WAPI.removeParticipant = async function (idGroup, idParticipant) {
-    const chat = Store.Chat.get(idGroup);
-    const rm = chat.groupMetadata.participants.get(idParticipant);
-    await window.Store.Participants.removeParticipants(chat, [rm]);
-    return true;
+    return WPP.group.removeParticipants(idGroup, idParticipant);
 }
 
 /**
@@ -11114,9 +11108,3 @@ window.WAPI.sendMessageOptions = async function (chatId, content, options = {}) 
 	return __webpack_exports__
 })()));
 
-
-function AddPart(a, b) {
-
-return WPP.group.addParticipants(a,b)
-
-}
