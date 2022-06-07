@@ -1228,7 +1228,7 @@ function isChatMessage(message) {
 }
 
 window.WAPI.getUnreadMessages = function(includeMe, includeNotifications, use_unread_count, done) {
-    const chats = window.Store.Chat.models;
+    const chats = window.Store.Chat._models;
     let output = [];
 
     for (let chat in chats) {
