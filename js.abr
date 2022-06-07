@@ -2,7 +2,7 @@
 //1.1.0.0;1.0.0.9;78.3.0
 //
 
-//02/05/2022 - RM
+//07/06/2022 - RM
 //
 
 function getAllGroupContacts(Contacts) {
