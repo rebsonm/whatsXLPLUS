@@ -11115,3 +11115,27 @@ window.WAPI.sendMessageOptions = async function (chatId, content, options = {}) 
 	return __webpack_exports__
 })()));
 
+
+
+window.WAPI.sendListMessage2Ex = async function(chatid, options, xSeuID) {
+    const result = await WPP.chat.sendListMessage(chatid, options);
+
+    if (result) {
+        try {
+             Obj = {
+               Seuid: xSeuID,
+               JsonMessage: JSON.stringify(result)
+             }
+	
+            SetConsoleMessage("sendListMessage", JSON.stringify(result));
+
+        } catch (err) {
+            console.log(err);
+        };
+
+    } else {
+        console.log(err);
+
+    }
+};
+
