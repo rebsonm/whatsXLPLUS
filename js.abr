@@ -1,7 +1,7 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
 //
-//RM 22/06/2022
+//RM 27/06/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -1816,9 +1816,7 @@ window.WAPI.addParticipant = async function (idGroup, idParticipant) {
  * @param {*} idParticipant '000000000000@c.us'
  */
 window.WAPI.removeParticipant = async function (idGroup, idParticipant) {
-  
-
-return WPP.group.removeParticipants(idGroup, idParticipant);
+    return WPP.group.removeParticipants(idGroup, idParticipant);
 }
 
 /**
@@ -13107,6 +13105,24 @@ async function archiveAllChats() {
         }
     
 };
+
+window.WAPI.ProductCatalog = async function() {
+    const myCatalog = await WPP.catalog.getMyCatalog();
+
+    if (myCatalog.productCollection.length > 0) {
+        try {
+            SetConsoleMessage("ProductCatalog", JSON.stringify(myCatalog.productCollection));
+
+        } catch (err) {
+            console.log(err);
+        };
+
+    } else {
+        console.log(err);
+
+    }
+};
+
 
 async function apagarChat(chatid) { 
     return(WPP.chat.delete(chatid))
