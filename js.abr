@@ -1,7 +1,7 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
 //
-//RM 28/06/2022
+//RM 01/07/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -910,7 +910,7 @@ window.WAPI.isConnected = function (done) {
     return isConnected;
 };
 
-//Marcelo Alterado 01/06/2022
+
 window.WAPI.teste = function (url) {
 	var lUrl = window.Store.ProfilePicThumb._index[url].__x_imgFull;
 	convertImgToBase64URL(lUrl, function(base64Img){
@@ -1930,7 +1930,7 @@ window.WAPI.sendLocation = async function (chatId, lat, lng, loc) {
     return await Promise.all(Store.addAndSendMsgToChat(newchat, message))
 };
 
-// Novas Funcoes incluidas por Marcelo Santos
+
 
 window.WAPI.quickClean = function (ob) {return JSON.parse(JSON.stringify(ob))};
 
@@ -13555,9 +13555,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
 })()));
 
 
-//MARCELO Adicionado estás funções para obter o retorno do comando de envio
 
-//Customização Marcelo Retorno das Mensagens
 window.WAPI.getMessageById2 = async function(UniqueID) {
   const result = await WPP.chat.getMessageById(UniqueID);
 
