@@ -1,7 +1,7 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
 //
-//RM 01/07/2022
+//RM 11/07/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -131,7 +131,7 @@ if (!window.Store||!window.Store.Msg) {
                 { id: "WapDelete", conditions: (module) => (module.sendConversationDelete && module.sendConversationDelete.length == 2) ? module : null },
                 { id: 'FindChat', conditions: (module) => (module && module.findChat) ? module : null},				
 				{ id: "WapQuery", conditions: (module) => (module.default && module.default.queryExist) ? module.default : null },				                
-		{ id: "WapQueryMD", conditions: (module) => (module.queryExist && module) ? module : null },
+		{ id: "WapQueryMD", conditions: (module) => (module.queryPhoneExists && module) ? module : null },
 				{ id: 'Perfil', conditions: (module) => module.__esModule === true && module.setPushname && !module.getComposeContents ? module : null},		
                 { id: "OpenChat", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.openChat) ? module.default : null },
                 { id: "UserConstructor", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.isServer && module.default.prototype.isUser) ? module.default : null },
@@ -1806,7 +1806,7 @@ window.WAPI.joinGroupViaLink = async function(link){
  * @param {*} idParticipant '000000000000@c.us'
  */
 window.WAPI.addParticipant = async function (idGroup, idParticipant) {
-    return WPP.group.addParticipants(idGroup, idParticipant);
+  return WPP.group.addParticipants(idGroup, idParticipant);
 }
 
 
@@ -1816,7 +1816,7 @@ window.WAPI.addParticipant = async function (idGroup, idParticipant) {
  * @param {*} idParticipant '000000000000@c.us'
  */
 window.WAPI.removeParticipant = async function (idGroup, idParticipant) {
-    return WPP.group.removeParticipants(idGroup, idParticipant);
+   return WPP.group.removeParticipants(idGroup, idParticipant);
 }
 
 /**
@@ -1999,7 +1999,9 @@ window.WAPI.checkNumberStatus = async function (id) {
         let isMd = true
 		let result
 		try {
-			 result = await window.Store.WapQueryMD.queryExist('+'+id);
+			 //result = await window.Store.WapQueryMD.queryExist('+'+id);
+			 
+			 result = await window.Store.WapQueryMD.queryPhoneExists(id);
 
 		}
 		catch(e){		
@@ -13553,6 +13555,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
     var __webpack_exports__ = __webpack_require__(3607);
     return __webpack_exports__
 })()));
+
 
 
 
