@@ -1,7 +1,7 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
 //
-//RM 11/07/2022
+//RM 12/07/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -345,6 +345,16 @@ window.WAPI._serializeProfilePicThumb = (obj) => {
         raw: obj.raw,
         tag: obj.tag
     });
+}
+
+
+
+
+
+window.WAPI.GravaAudio = async function (idNum, Duration) {
+
+return WPP.chat.markIsRecording(idNum, Duration);
+sleep(Duration);
 }
 
 window.WAPI.createGroup = async function (name, contactsId) {
@@ -13766,3 +13776,7 @@ WPP.on("call.incoming_call", (call) => {
 	    //SetConsoleMessage("IncomingiCall", Json.stringfy(call);
 	    
 });
+
+
+
+
