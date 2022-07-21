@@ -1,7 +1,7 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
 //
-//RM 12/07/2022
+//RM 21/07/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -13776,6 +13776,46 @@ WPP.on("call.incoming_call", (call) => {
 	    //SetConsoleMessage("IncomingiCall", Json.stringfy(call);
 	    
 });
+
+
+
+//Checar se Número Existe e caso Tenha Digito Nove Retorna com o Número acrescido do Digito 9 
+window.WAPI.CheckNumberExists = async function(chatid) {
+    const result = await WPP.contact.queryExists(chatid);
+
+    if (result) {
+        try {            
+			SetConsoleMessage("CheckNumberExists", JSON.stringify({id : result.wid,  valid : true}));
+
+        } catch (err) {
+            //console.log(err);
+			SetConsoleMessage("CheckNumberExists", JSON.stringify({id : chatid,  valid : false}));
+        };
+
+    } else {
+        //console.log(err);
+	SetConsoleMessage("CheckNumberExists", JSON.stringify({id : chatid,  valid : false}));
+
+    }
+};
+
+function startMonitorWPPCrash(intervalSeconds = 0) {
+
+    if (intervalSeconds >= 1) {
+        intervalMonitor = window.setInterval(monitorWPPCrash, intervalSeconds * 1000);
+    }
+}
+
+function monitorWPPCrash() {
+    let vIsMainLoaded = WPP.conn.isMainLoaded();
+    let vIsAuthenticated = WPP.conn.isAuthenticated();
+    var obj = new Object();
+    obj.MainLoaded = vIsMainLoaded;
+    obj.Authenticated = vIsAuthenticated;
+
+    SetConsoleMessage("WPPCrashMonitor", JSON.stringify(obj));
+
+}
 
 
 
