@@ -2,7 +2,7 @@
 //1.1.0.0;1.0.0.9;78.3.0
   
 //
-//RM 19/09/2022
+//RM 10/10/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -131,9 +131,9 @@ if (!window.Store||!window.Store.Msg) {
                 { id: "_Presence", conditions: (module) => (module.setPresenceAvailable && module.setPresenceUnavailable) ? module : null },
                 { id: "WapDelete", conditions: (module) => (module.sendConversationDelete && module.sendConversationDelete.length == 2) ? module : null },
                 { id: 'FindChat', conditions: (module) => (module && module.findChat) ? module : null},				
-				{ id: "WapQuery", conditions: (module) => (module.default && module.default.queryExist) ? module.default : null },				                
-				{ id: "WapQueryMD", conditions: (module) => (module.queryPhoneExists && module) ? module : null },
-				{ id: 'Perfil', conditions: (module) => module.__esModule === true && module.setPushname && !module.getComposeContents ? module : null},	
+				{ id: "WapQuery", conditions: (module) => (module.default && module.default.queryExist) ? module.default : null },				
+				{ id: "WapQueryMD", conditions: (module) => module.queryExists && module.queryPhoneExists ? module : null},
+				{ id: 'Perfil', conditions: (module) => module.__esModule === true && module.setPushname && !module.getComposeContents ? module : null},
 				{ id: "CryptoLib", conditions: (module) => (module.decryptE2EMedia) ? module : null },
                 { id: "OpenChat", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.openChat) ? module.default : null },
                 { id: "UserConstructor", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.isServer && module.default.prototype.isUser) ? module.default : null },
@@ -1945,7 +1945,6 @@ window.WAPI.sendLocation = async function (chatId, lat, lng, loc) {
     return await Promise.all(Store.addAndSendMsgToChat(newchat, message))
 };
 
-											 
 
 
 
@@ -2017,7 +2016,7 @@ window.WAPI.checkNumberStatus = async function (id) {
 		let result
 		try {
 			 //result = await window.Store.WapQueryMD.queryExist('+'+id);
-			
+			 
 			 result = await window.Store.WapQueryMD.queryPhoneExists(id);
 
 		}
@@ -9024,6 +9023,9 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     linkPreviewApiServers: null,
                     poweredBy: "WA-JS"
                 }
+								 
+															 
+																					  
             },
             2275: (e, t, r) => {
                 "use strict";
@@ -14546,9 +14548,6 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
 
 
 
-
-
-
 window.WAPI.getMessageById2 = async function(UniqueID) {
   const result = await WPP.chat.getMessageById(UniqueID);
 
@@ -14799,19 +14798,14 @@ function monitorWPPCrash() {
 
 window.WAPI.getLastSeen = async function(chatid) {
     const result = await WPP.chat.getLastSeen(chatid);
-
-    if (result) {
+    
         try {
             SetConsoleMessage("getLastSeen", JSON.stringify(result));
 
         } catch (err) {
             console.log(err);
         };
-
-    } else {
-        console.log(err);
-
-    }
+    
 };
 
 window.WAPI.getMessages = async function(chatid, options) {
@@ -14831,6 +14825,8 @@ window.WAPI.getMessages = async function(chatid, options) {
     }
 };
 
+														   
+															   
 
 //Evento Recebendo Nova Mensagem
 WPP.on("chat.new_message", (msg) => {
@@ -14875,9 +14871,9 @@ window.WAPI.sendLocationMessage2Ex = async function(chatid, options, xSeuID)  {
     }
 };
 
-WPP.on('conn.main_ready', () => {
-    //console.log("isMainReady Carregou as Conversas Pronto para Uso");
-    SetConsoleMessage("isReady", JSON.stringify({isReady: true}));
+WPP.on('conn.authenticated', () => {
+    //console.log("isAuthenticated Auntenticado QrCode");
+    SetConsoleMessage("isAuthenticated", JSON.stringify({isAuthenticated: true}));
 });
 
 WPP.on('conn.main_loaded', () => {
@@ -14885,7 +14881,23 @@ WPP.on('conn.main_loaded', () => {
     SetConsoleMessage("isLoaded", JSON.stringify({isLoaded: true}));
 });
 
-WPP.on('conn.authenticated', () => {
-    //console.log("isAuthenticated Auntenticado QrCode");
-    SetConsoleMessage("isAuthenticated", JSON.stringify({isAuthenticated: true}));
+WPP.on('conn.main_ready', () => {
+    //console.log("isMainReady Carregou as Conversas Pronto para Uso");
+    SetConsoleMessage("isReady", JSON.stringify({isReady: true}));
 });
+
+//android, iphone, web ou unknown
+window.WAPI.getPlatformFromMessage2 = async function(UniqueID, chatid) {
+    const result = await WPP.chat.getPlatformFromMessage(UniqueID);
+    
+    try {
+        SetConsoleMessage("getPlatformFromMessage", JSON.stringify({platform: result, IdMensagem: UniqueID, id: chatid}));
+
+    } catch (err) {
+        console.log(err);
+    };
+    
+};
+
+
+
