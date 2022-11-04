@@ -1601,7 +1601,7 @@ window.WAPI.sendImage = function(imgBase64, chatid, filename, caption) {
 
 window.WAPI.sendMessageToID = function(chatid, msgText) {
  
-return window.WAPI.sendTextMessage2Ex(chatid, msgText, 'createChat : true', '');  
+return WPP.chat.sendTextMessage(chatid, msgText, 'createChat : true');  
 
 }
 
