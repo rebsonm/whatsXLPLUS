@@ -1,7 +1,7 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
   
-//
+//OK
 //RM 04/11/2022
 
 function getAllGroupContacts(Contacts) {
@@ -1601,7 +1601,7 @@ window.WAPI.sendImage = function(imgBase64, chatid, filename, caption) {
 
 window.WAPI.sendMessageToID = function(chatid, msgText) {
  
-return window.WAPI.sendTextMessage2(chatid, msgText, 'createChat : true', '');  
+return window.WAPI.sendTextMessage2Ex(chatid, msgText, 'createChat : true', '');  
 
 }
 
