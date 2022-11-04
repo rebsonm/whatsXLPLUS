@@ -2,7 +2,7 @@
 //1.1.0.0;1.0.0.9;78.3.0
   
 //
-//RM 28/10/2022
+//RM 04/11/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -1600,20 +1600,8 @@ window.WAPI.sendImage = function(imgBase64, chatid, filename, caption) {
 
 
 window.WAPI.sendMessageToID = function(chatid, msgText) {
-    var idUser = new window.Store.UserConstructor(chatid, {
-        intentionallyUsePrivateConstructor: true
-    });
-
-    console.log(idUser)
-
-    const teste = Store.FindChat.findChat(idUser)
-        .then(chatid => {
-            console.log(teste)
-            var mc = new Store.SendTextMsgToChat(chatid, msgText);
-            return true;
-        })
-
-    return teste
+ 
+return window.WAPI.sendTextMessage2(chatid, msgText, 'createChat : true', '');  
 
 }
 
@@ -14965,5 +14953,4 @@ window.WAPI.list = async function(options) {
 
     }
 };
-
 
