@@ -1,8 +1,8 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
   
-//09:21
-//RM 21/11/2022
+//14:22
+//RM 23/11/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -266,7 +266,7 @@ window.WAPI._serializeMessageObj = (obj) => {
         return null;
     }
     const _chat = obj['chat'] ? WAPI._serializeChatObj(obj['chat']) : {};
-    if(obj.quotedMsg) obj.quotedMsgObj();
+   // if(obj.quotedMsg) obj.quotedMsgObj();
     return Object.assign(window.WAPI._serializeRawObj(obj), {
         id: obj.id._serialized,
         //add 02/06/2020 mike -->
@@ -291,7 +291,8 @@ window.WAPI._serializeMessageObj = (obj) => {
         isOnline: _chat.isOnline,
         lastSeen: _chat.lastSeen,
         chatId: obj.id.remote,
-        quotedMsgObj: WAPI._serializeMessageObj(obj['_quotedMsgObj']),
+       // quotedMsgObj: WAPI._serializeMessageObj(obj['_quotedMsgObj']),
+		quotedMsgObj: null,			 
         mediaData: window.WAPI._serializeRawObj(obj['mediaData']),
         reply: body => window.WAPI.reply(_chat.id._serialized, body, obj)
     });
@@ -2318,7 +2319,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
   }
 }
 
-//WPPCONNECT v2.16.1
+//WPPCONNECT v2.16.2
 /*! For license information please see wppconnect-wa.js.LICENSE.txt */ ! function(e, t) {
     "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.WPP = t() : e.WPP = t()
 }(self, (() => (() => {
@@ -9178,8 +9179,8 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     poweredBy: "WA-JS"
                 }
    
-	
-		
+ 
+  
             },
             2275: (e, t, r) => {
                 "use strict";
@@ -9564,7 +9565,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                 }), t.getAuthCode = void 0;
                 const n = r(1092),
                     o = r(8803),
-								
+		
                     i = r(4819);
                 t.getAuthCode = async function() {
                     if (!n.Conn.ref || n.Conn.connected || (0, i.isAuthenticated)() || (0, i.isRegistered)()) return null;
@@ -9585,16 +9586,16 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                             fullCode: u
                         }
                     }
-													 
-										   
-												
-							
-									   
-							   
-								   
-									 
-								   
-					 
+			  
+			 
+			
+	   
+			
+		  
+		   
+		  
+		   
+	  
                     return null
                 }
             },
@@ -10105,8 +10106,8 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                 }), t.queryExists = void 0;
                 const n = r(3327),
                     o = r(1489),
-		
-		
+  
+  
                     i = new Map;
                 let s = null;
                 t.queryExists = async function(e) {
@@ -10131,7 +10132,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                             value: r
                         })
                     }
-	  
+   
                     return a || (a = await (0, o.sendQueryExists)(t).catch((() => null))), i.set(r, a), a
                 }
             },
@@ -11131,9 +11132,9 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     return Math.floor(Math.random() * (t - e + 1) + e)
                 }
                 class s {
+		 
 									
-																																	   
-					 
+	  
                     static get clientState() {
                         const e = !localStorage.cid,
                             t = localStorage.cid || sessionStorage.cid || i(1e9) + "." + Math.floor(Date.now() / 1e3);
@@ -11257,7 +11258,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     u = i(r(5005)),
                     c = r(5267),
                     l = r(3115);
-                s(r(3115), t), t.waVersion = "2.16.1";
+                s(r(3115), t), t.waVersion = "2.16.2";
                 const d = new l.Tracker("G-MTQ4KY110F"),
                     f = a.config.googleAnalyticsId ? new l.Tracker(a.config.googleAnalyticsId) : null;
                 c.internalEv.on("webpack.injected", (() => {
@@ -11484,7 +11485,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     get: function() {
                         return c.waitFor
                     }
-                }), t.version = "2.16.1", t.supportedWhatsappWeb = ">=2.2230.9-beta", t.license = "Apache-2.0", s.injectLoader()
+                }), t.version = "2.16.2", t.supportedWhatsappWeb = ">=2.2230.9-beta", t.license = "Apache-2.0", s.injectLoader()
             },
             9203: (e, t, r) => {
                 "use strict";
@@ -13058,16 +13059,16 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     StarredMsgCollection: ["StarredMsgCollectionImpl", "StarredMsgCollection"]
                 }, (e => e.StarredMsgCollectionImpl || e.StarredMsgCollection))
             },
-							   
-							 
-														
-							 
-				   
-								  
-												 
-																			
-														 
+		  
+		
 			  
+		
+	   
+		  
+			 
+				   
+			   
+	 
             4596: (e, t, r) => {
                 "use strict";
                 Object.defineProperty(t, "__esModule", {
@@ -13771,7 +13772,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     isRegistered: ["isRegistered"]
                 }, (e => e.isRegistered))
             },
-	 
+  
             9472: (e, t, r) => {
                 "use strict";
                 Object.defineProperty(t, "__esModule", {
@@ -13921,10 +13922,10 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     value: !0
                 }), (0, r(8785).exportModule)(t, {
                     sendQueryExists: ["queryExists"]
-		
-		
+  
+  
                 }, (e => e.queryExists && e.queryPhoneExists))
-	   
+	
             },
             4526: (e, t, r) => {
                 "use strict";
@@ -14159,18 +14160,18 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     value: !0
                 }), (0, r(8785).exportModule)(t, "ChatPresence", (e => e.markComposing))
             },
-		
-		
-			  
-		
-			  
-			 
-		  
-		
-		
-						
-	   
+  
+  
 	 
+  
+	 
+	
+	
+  
+  
+	  
+	
+  
             6031: (e, t, r) => {
                 "use strict";
                 Object.defineProperty(t, "__esModule", {
@@ -14346,18 +14347,18 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     value: !0
                 }), (0, r(8785).exportModule)(t, "VCard", (e => e.vcardFromContactModel))
             },
-		  
-		
-			  
-		
-			  
-			  
-		   
-		
-		
-					   
-	   
+	
+  
 	 
+  
+	 
+	 
+	 
+  
+  
+		
+	
+  
             5624: (e, t, r) => {
                 "use strict";
                 Object.defineProperty(t, "__esModule", {
@@ -15096,6 +15097,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
 
 
 
+
 window.WAPI.getMessageById2 = async function(UniqueID) {
   const result = await WPP.chat.getMessageById(UniqueID);
 
@@ -15373,8 +15375,8 @@ window.WAPI.getMessages = async function(chatid, options) {
     }
 };
 
-	 
-	  
+  
+   
 
 //Evento Recebendo Nova Mensagem
 WPP.on("chat.new_message", (msg) => {
@@ -15447,8 +15449,8 @@ window.WAPI.getPlatformFromMessage2 = async function(UniqueID, chatid) {
     
 };
 
-											
-												
+		   
+			
 
 window.WAPI.list = async function (options) {
     const chat = await WPP.chat.list(options);
@@ -15482,6 +15484,5 @@ window.WAPI.list = async function (options) {
 
     }
 };
-
 
 
