@@ -1,8 +1,8 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
   
-//14:22
-//RM 23/11/2022
+//09:45
+//RM 30/11/2022
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -291,12 +291,14 @@ window.WAPI._serializeMessageObj = (obj) => {
         isOnline: _chat.isOnline,
         lastSeen: _chat.lastSeen,
         chatId: obj.id.remote,
-       // quotedMsgObj: WAPI._serializeMessageObj(obj['_quotedMsgObj']),
-		quotedMsgObj: null,			 
+        quotedMsgObj: WAPI._serializeMessageObj(obj['_quotedMsgObj']),
+		//quotedMsgObj: null,			 
+					  
         mediaData: window.WAPI._serializeRawObj(obj['mediaData']),
         reply: body => window.WAPI.reply(_chat.id._serialized, body, obj)
     });
 };
+
 
 window.WAPI._serializeNumberStatusObj = (obj) => {
     if (obj == undefined) {
@@ -15097,7 +15099,9 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
 
 
 
+																			  
 
+											  
 window.WAPI.getMessageById2 = async function(UniqueID) {
   const result = await WPP.chat.getMessageById(UniqueID);
 
@@ -15484,5 +15488,6 @@ window.WAPI.list = async function (options) {
 
     }
 };
+
 
 
