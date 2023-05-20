@@ -1,8 +1,8 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //1.1.0.0;1.0.0.9;78.3.0
   
-//10:10
-//RM 12/05/2023
+//13:21
+//RM 20/05/2023
 
 function getAllGroupContacts(Contacts) {
 	SetConsoleMessage("GetAllGroupContacts", JSON.stringify(Contacts));	
@@ -2342,7 +2342,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
   }
 }
 
-//WPPCONNECT v2.24.0
+//WPPCONNECT v2.24.1
 /*! For license information please see wppconnect-wa.js.LICENSE.txt */ ! function(e, t) {
     "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.WPP = t() : e.WPP = t()
 }(self, (() => (() => {
@@ -3381,7 +3381,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                         return Array.from ? Array.from(e) : d.call(e)
                     }
                     var p = /^image\/.+$/;
-	 
+  
 
                     function m(e) {
                         return p.test(e)
@@ -3489,9 +3489,9 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                         if (O && w) {
                                             P || (n.checkOrientation = !1, n.retainExif = !1);
                                             var a = "image/jpeg" === i,
-	 
-	 
-	 
+  
+  
+  
                                                 s = a && n.checkOrientation,
                                                 u = a && n.retainExif;
                                             if (!O || s || u) {
@@ -3500,11 +3500,11 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                                     var n = e.target.result,
                                                         a = {},
                                                         c = 1;
-	  
-		
-				
-	  
-		  
+   
+  
+	
+   
+	
                                                     s && (c = h(n)) > 1 && o(a, function(e) {
                                                         var t = 0,
                                                             r = 1,
@@ -3551,10 +3551,10 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                                         return n.reduce((function(e, t) {
                                                             return 255 === t[0] && 225 === t[1] ? e.concat(t) : e
                                                         }), [])
-	
+ 
                                                     }(n)), a.url = s || u ? !O || c > 1 ? b(n, i) : O.createObjectURL(r) : n, t.load(a)
-	  
-	
+   
+ 
                                                 }, c.onabort = function() {
                                                     t.fail(new Error("Aborted to read the image with FileReader."))
                                                 }, c.onerror = function() {
@@ -3985,7 +3985,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
   
  
                                     r ? !1 !== r.call(o, a) && i.emit.apply(i, [a.name].concat(n)) : i.emit.apply(i, [t].concat(n))
-	
+ 
                                 };
                             if (a[e]) throw Error("Event '" + e + "' is already listening");
                             this._listenersCount++, i._newListener && i._removeListener && !n._onNewListener ? (this._onNewListener = function(r) {
@@ -7626,35 +7626,35 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                 degrees: e.degrees,
                                 shareDuration: e.shareDuration
                             })
-	  
-	  
+   
+   
                         }))
-	   
-		 
-	   
-	  
-	  
+	
+   
+	
+   
+   
                     }))
                 }))
-	  
-	
-		   
+   
+ 
 	 
-	 
-	 
-	 
-	 
-	 
-	 
+  
+  
+  
+  
+  
+  
+  
    
    
-	
-	
-	 
-	
+ 
+ 
+  
+ 
    
    
-	
+ 
    
    
             },
@@ -7696,7 +7696,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     c = r(11092),
                     l = r(60758);
                 u.onInjected((() => (c.MsgStore.on("add", (e => {
-												
+			
                     e.isNewMsg && queueMicrotask((async () => {
                         "ciphertext" === (e = await async function(e) {
                             if (void 0 !== e.quotedStanzaID) {
@@ -7714,7 +7714,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                 s.internalEv.emit("chat.new_message", e)
                             }))
                         })), s.internalEv.emit("chat.new_message", e)
-						   
+		 
                     }))
                 })), void 0 === c.MsgModel.prototype.chat && Object.defineProperty(c.MsgModel.prototype, "chat", {
                     get: function() {
@@ -8184,13 +8184,13 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                 const n = r(63327),
                     o = r(11092),
                     i = r(21489);
-                t.generateMessageID = function(e) {
+                t.generateMessageID = async function(e) {
                     const t = o.UserPrefs.getMaybeMeUser();
                     let r, a;
                     return r = e instanceof o.Wid ? e : e instanceof o.ChatModel ? e.id : (0, n.assertWid)(e), r.isGroup() && (a = o.WidFactory.toUserWid(t)), new o.MsgKey({
                         from: t,
                         to: r,
-                        id: (0, i.randomMessageId)(),
+                        id: await Promise.resolve((0, i.randomMessageId)()),
                         participant: a,
                         selfDir: "out"
                     })
@@ -9269,19 +9269,19 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                             }
                         }
                         return o
-		   
-					   
-			 
-					 
-			
-				   
-		 
-						 
-			
-				 
-		 
-				
-		 
+	 
+		
+	
+	  
+   
+	   
+   
+	   
+   
+	 
+   
+	
+   
                     })), (0, c.wrapModuleFunction)(l.encodeMaybeMediaType, ((e, ...t) => {
                         const [r] = t;
                         return "button" === r ? u.DROP_ATTR : e(...t)
@@ -9355,7 +9355,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                         });
                         t.id = r.messageId
                     }
-                    if (t.id || (t.id = (0, l.generateMessageID)(e)), r.mentionedList && !Array.isArray(r.mentionedList)) throw new i.WPPError("mentioned_list_is_not_array", "The option mentionedList is not an array", {
+                    if (t.id || (t.id = await (0, l.generateMessageID)(e)), r.mentionedList && !Array.isArray(r.mentionedList)) throw new i.WPPError("mentioned_list_is_not_array", "The option mentionedList is not an array", {
                         mentionedList: r.mentionedList
                     });
                     if (r.detectMentioned && e.isGroup && (!r.mentionedList || !r.mentionedList.length)) {
@@ -9630,16 +9630,16 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     (0, u.wrapModuleFunction)(c.typeAttributeFromProtobuf, ((e, ...t) => {
                         const [r] = t;
                         return r.listMessage ? "text" : e(...t)
-		   
-					   
-			 
-					
-			
-				 
-		 
-				
+	 
+		
+	
+	 
+   
+	 
+   
+	
                     }))
-	   
+	
                 }))
             },
             2814: function(e, t, r) {
@@ -11049,39 +11049,39 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
             },
             18552: (e, t) => {
                 "use strict";
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
 	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
+ 
                 Object.defineProperty(t, "__esModule", {
                     value: !0
    
-	
+ 
                 }), t.isMultiDevice = void 0, t.isMultiDevice = function() {
-	
+ 
                     return !0
                 }
             },
@@ -12488,7 +12488,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     if (!(null === (r = s.groupMetadata) || void 0 === r ? void 0 : r.canSetDescription())) throw new n.WPPError("you_are_not_allowed_set_group_description", `You are not allowed to set group description in ${s.id._serialized}`, {
                         groupId: s.id.toString()
                     });
-                    const u = (0, o.randomMessageId)();
+                    const u = await Promise.resolve((0, o.randomMessageId)());
                     return await (0, o.sendSetGroupDescription)(s.id, t, u, null === (a = s.groupMetadata) || void 0 === a ? void 0 : a.descId), s.groupMetadata.descId = u, s.groupMetadata.desc = t, !0
                 }
             },
@@ -12732,7 +12732,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     u = i(r(35005)),
                     c = r(65267),
                     l = r(13115);
-                a(r(13115), t), t.waVersion = "2.24.0";
+                a(r(13115), t), t.waVersion = "2.24.1";
                 const d = ["W: ", "-", ", WA-JS: ", t.waVersion],
                     f = new l.Tracker("G-MTQ4KY110F"),
                     p = s.config.googleAnalyticsId ? new l.Tracker(s.config.googleAnalyticsId) : null;
@@ -12966,7 +12966,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     get: function() {
                         return c.waitFor
                     }
-                }), t.version = "2.24.0", t.supportedWhatsappWeb = ">=2.2245.8-beta", t.license = "Apache-2.0", a.injectLoader()
+                }), t.version = "2.24.1", t.supportedWhatsappWeb = ">=2.2245.8-beta", t.license = "Apache-2.0", a.injectLoader()
             },
             39203: (e, t, r) => {
                 "use strict";
@@ -13660,18 +13660,18 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                             if (!t || 0 === t.participants.length) throw new Error("empty participants for status@broadcast");
                             let o;
                             await c.functions.markForgetSenderKey(n.to, t.participants.map(a.assertWid)), c.functions.getAsMms(n) && (o = n.isUnsentPhoneMsg() ? {
-	
-	
-	 
-	 
-		
-	 
+ 
+ 
+  
+  
+  
+  
    
+ 
+  
+ 
+  
 	
-	 
-	
-		
-	   
                                 type: n.type
                             } : n.avParams()), n.author || (n.author = c.UserPrefs.getMaybeMeUser());
                             const i = (0, d.createMsgProtobuf)(n, o || {});
@@ -14113,17 +14113,17 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                             }
                         }))
                     }(n.data), i = n.data.replace("data:image/jpeg;base64,", ""), c = await a.OpaqueData.createFromBase64Jpeg(i), p = new Uint8Array(32), m = (window.crypto.getRandomValues(p), {
-														  
-									
-					  
-																			
-																	   
-											   
-																
+				
+		 
+	   
+				   
+					
+			  
+				
                         key: a.Base64.encodeB64(p),
                         timestamp: (0, s.unixTime)()
-						   
-												
+		 
+			
                     }), g = new AbortController, y = await (0, s.uploadThumbnail)({
                         thumbnail: c,
                         mediaType: "thumbnail-link",
@@ -14133,7 +14133,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                         signal: g.signal,
                         timeout: 3e3,
                         isViewOnce: !1
-						   
+		 
                     }), b = y.mediaEntry;
                     return {
                         thumbnail: o,
@@ -14215,17 +14215,18 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                 })),
                                 n = [
                                     [/locale/, 99],
-                                    [/vendor.*main~/, 83],
-                                    [/vendor.*main/, 82],
+                                    [/vendor.*main~/, 84],
+                                    [/vendor.*main/, 83],
+                                    [/vendor/, 82],
                                     [/main~/, 81],
                                     [/main/, 80],
                                     [/vendor.*lazy.*high/, 75],
                                     [/lazy.*high.*~/, 74],
                                     [/lazy.*high/, 73],
-                                    [/vendor.*lazy.*low/, 72],
+															  
                                     [/lazy.*low.*~/, 71],
                                     [/lazy.*low/, 70],
-                                    [/vendor/, 2],
+												  
                                     [/lazy/, 1]
                                 ],
                                 o = e => {
@@ -14233,8 +14234,14 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                                     for (const e of n)
                                         if (e[0].test(r)) return e[1];
                                     return 0
-                                };
-                            await Promise.all(r.sort(((e, t) => o(t) - o(e))).map((e => t.webpackRequire.e(e)))), t.isReady = !0, a("ready to use"), await i.internalEv.emitAsync("webpack.ready").catch((() => null))
+                                },
+                                s = r.sort(((e, t) => o(t) - o(e)));
+                            for (const e of s) try {
+                                await t.webpackRequire.e(e)
+                            } catch (r) {
+                                a("load file error", t.webpackRequire.e(e))
+                            }
+                            t.isReady = !0, a("ready to use"), await i.internalEv.emitAsync("webpack.ready").catch((() => null))
                         }
                     ])
                 };
@@ -14482,58 +14489,58 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     LabelItemCollection: ["LabelItemCollectionImpl", "LabelItemCollection"]
                 }, (e => e.LabelItemCollectionImpl || e.LabelItemCollection))
             },
-	
+ 
   
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
-	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
-	 
-  
-	
-	
-  
-  
-  
-	
-	  
-	 
-  
-  
-	  
-	
-	 
+ 
+ 
    
-   
-	  
-	
-	
+  
+ 
+ 
   
    
-	 
+  
+  
+  
+	
+  
+ 
+  
+  
+ 
+ 
+  
+  
+  
+ 
+   
+  
+  
+  
+   
+ 
+  
+   
+   
+   
+ 
+ 
+  
+   
+  
   
             95741: (e, t, r) => {
                 "use strict";
@@ -15096,82 +15103,82 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
             },
             79354: (e, t, r) => {
                 "use strict";
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
 	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
+ 
                 Object.defineProperty(t, "__esModule", {
                     value: !0
-	
-	
+ 
+ 
                 }), (0, r(58785).exportModule)(t, {
                     canEditMsg: ["canEditText", "canEditMsg"]
                 }, (e => e.canEditMsg || e.canEditText))
-		  
+	
    
             },
             53679: (e, t, r) => {
                 "use strict";
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
 	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
+ 
                 Object.defineProperty(t, "__esModule", {
                     value: !0
-	
-	
+ 
+ 
                 }), (0, r(58785).exportModule)(t, {
                     canReplyMsg: "canReplyMsg"
                 }, (e => e.canReplyMsg))
    
    
-		
+  
    
    
             },
@@ -15479,43 +15486,43 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
             },
             25264: (e, t, r) => {
                 "use strict";
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
 	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
+ 
                 Object.defineProperty(t, "__esModule", {
                     value: !0
-	
-	
+ 
+ 
                 }), (0, r(58785).exportModule)(t, {
                     getQuotedMsgObj: "getQuotedMsgObj"
                 }, (e => e.getQuotedMsgObj))
-	
+ 
    
-		
+  
    
    
             },
@@ -15529,43 +15536,43 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
             },
             68879: (e, t, r) => {
                 "use strict";
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
 	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
+ 
                 Object.defineProperty(t, "__esModule", {
                     value: !0
-	
-	
+ 
+ 
                 }), (0, r(58785).exportModule)(t, {
                     getSearchContext: "getSearchContext"
                 }, (e => e.getSearchContext))
-	
+ 
    
-		
+  
    
    
             },
@@ -15808,46 +15815,46 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                     resetGroupInviteCode: "resetGroupInviteCode"
                 }, (e => e.resetGroupInviteCode))
             },
-	
+ 
   
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
 	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
-	 
+ 
   
-	
-	
-	
-	
-		 
-		 
-	 
-	 
-	
+  
+ 
+ 
+ 
+ 
+   
+   
+  
+  
+ 
    
   
             65863: (e, t, r) => {
@@ -16779,105 +16786,105 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                 const n = r(58785);
                 r(7994), (0, n.exportProxyModel)(t, "LabelModel")
             },
-	
+ 
   
-		
-   
-	   
-		 
-	
+  
    
 	
+   
+ 
+   
+ 
   
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
-	
   
-	  
-	 
-	 
-	 
-		  
-	 
-	
-	 
-  
-	
-	
-  
-  
-	
-  
-  
-	  
-	
-	 
-   
-   
-	  
-	 
-	
-  
-   
-	  
-  
-	
-  
-		
-   
-	   
-		 
-	
-   
-	
-  
-	
-	
-	  
-  
-		
-	
-	
+ 
+ 
    
   
-	
-	
-  
-	  
-	 
-	 
-	 
-		  
-	 
-	
-	 
-  
-	
-	
-  
-  
-	  
-  
-  
-	 
-	
-	 
-   
-   
-	  
-		
-	
+ 
+ 
   
    
-	 
+  
+  
+  
+	
+  
+ 
+  
+  
+ 
+ 
+  
+  
+ 
+  
+  
+   
+ 
+  
+   
+   
+   
+  
+ 
+  
+   
+   
+  
+ 
+  
+  
+   
+	
+   
+ 
+   
+ 
+  
+ 
+ 
+   
+  
+  
+ 
+ 
+   
+  
+ 
+ 
+  
+   
+  
+  
+  
+	
+  
+ 
+  
+  
+ 
+ 
+  
+  
+   
+  
+  
+  
+ 
+  
+   
+   
+   
+  
+ 
+  
+   
+  
   
             88115: (e, t, r) => {
                 "use strict";
@@ -17266,7 +17273,7 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                 Object.defineProperty(t, "__esModule", {
                     value: !0
                 });
-	
+ 
                 const a = i(r(57590)),
   
                     s = r(58785),
@@ -17285,11 +17292,11 @@ window.WAPI.sendListMenu = async function (to, title, subTitle, description, but
                 }, (e => e.StickerPackCollection))
   
   
-	 
-	
-	 
-	  
-	  
+  
+ 
+  
+   
+   
             },
             38526: (e, t, r) => {
                 "use strict";
@@ -17852,24 +17859,24 @@ window.WAPI.getPlatformFromMessage2 = async function(UniqueID, chatid) {
 window.WAPI.list = async function () {
     const options = {
         onlyWithUnreadMessage: true   
-					   
+		
       };
     const chats = await WPP.chat.list(options);
     let messagesResult = [];
   
    
 
-			
-			 
-	   
+   
+	
+	
  
     if (chats) {
       try {
-	 
+  
         for (var i = 0; i < chats.length; i++) {
           if (chats[i].unreadCount > 0) {        
             let messages = await WPP.chat.getMessages(chats[i].id._serialized, {
-		   
+	 
               onlyUnread: true
             });
             for (var j = 0; j < messages.length; j++) {
