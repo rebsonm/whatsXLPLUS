@@ -17912,7 +17912,7 @@ window.WAPI.list = async function () {
   
   
 
-//Marcelo 11/01/2023
+
 window.WAPI.getInviteCode2 = async function(GROUP_ID) {
     const result = await WPP.group.getInviteCode(GROUP_ID);
     
@@ -17925,7 +17925,7 @@ window.WAPI.getInviteCode2 = async function(GROUP_ID) {
     
 };
 
-//Marcelo 16/01/2023
+
 window.WAPI.sendVCardContactMessage2Ex = async function(chatid, contacts, options, xSeuID)  {
     const result = await WPP.chat.sendVCardContactMessage(chatid, contacts, options);
 
@@ -17960,7 +17960,7 @@ window.WAPI.getHistorySyncProgress2 = async function() {
     };    
 };
 
-//Marcelo 14/03/2023
+
 window.WAPI.getMessageACK2 = async function(uniqueID) {
     const result = await WPP.chat.getMessageACK(uniqueID);
 
@@ -17984,7 +17984,7 @@ window.WAPI.getMessageACK2 = async function(uniqueID) {
     
 };
 
-//Marcelo 03/05/2023
+
 window.WAPI.GetisOnline2 = async function() {
     const result = await WPP.conn.isOnline();
     
@@ -17996,7 +17996,7 @@ window.WAPI.GetisOnline2 = async function() {
     };    
 };
 
-//Marcelo 03/05/2023
+
 WPP.on('conn.online', (online) => {
   if (online) {
     //console.log('You are online');
