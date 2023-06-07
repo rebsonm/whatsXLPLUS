@@ -1842,7 +1842,7 @@ window.WAPI.joinGroupViaLink = async function(link){
  */
 window.WAPI.addParticipant = async function (idGroup, idParticipant) {
 										 
-return WPP.group.addParticipants(idGroup, idParticipant);
+
 												 
 																 
 				
@@ -1855,7 +1855,7 @@ return WPP.group.addParticipants(idGroup, idParticipant);
  * @param {*} idParticipant '000000000000@c.us'
  */
 window.WAPI.removeParticipant = async function (idGroup, idParticipant) {
-return WPP.group.removeParticipants(idGroup, idParticipant);
+
 																  
 																   
 				
