@@ -173,7 +173,7 @@ function moveElementsToParentParentElement(elementClass) {
     }
 };
 
-function monitorUnReadMessages() {
+function monitorUnReadMessagesNew() {
     if (gettingUnreadMessages) return;
     
     gettingUnreadMessages = true;
@@ -217,7 +217,7 @@ const newMakeStore = () => {
     };
 
 //Add Marcelo 24/08/2023
-function monitorUnReadMessagesNew() {
+function monitorUnReadMessages() {
     if (gettingUnreadMessagesNew) return;
     
     gettingUnreadMessagesNew = true;
