@@ -188,7 +188,33 @@ function monitorUnReadMessages() {
         WAPI.getUnreadMessages(includeMe = "true", includeNotifications = "true", use_unread_count = "true");
     }
     gettingUnreadMessages = false;
-};
+}
+
+
+const newMakeStore = () => {
+  if (!window.Store) {
+    console.log("New script", "TInject Community")
+    let modules = self.require('__debug').modulesMap;
+    let keys = Object.keys(modules).filter(e=>e.includes("WA"));
+    let modulesFactory = {};
+    for (let key of keys){
+        if(!modules[key])
+            continue;
+        let module = modules[key];
+        modulesFactory[key] = {
+            default: module.defaultExport,
+            factory: module.factory,
+            ...module
+        };
+        if(Object.keys(modulesFactory[key].default).length == 0) {
+            try{
+                self.ErrorGuard.skipGuardGlobal(true);
+                Object.assign(modulesFactory[key], self.importNamespace(key));
+            }catch(e){
+				//
+            }
+        }
+    };
 
 //Add Marcelo 24/08/2023
 function monitorUnReadMessagesNew() {
