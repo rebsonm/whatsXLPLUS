@@ -1,8 +1,8 @@
 //Version_JS;Version_TInjectMin;Version_CEF4Min;
 //2.1.0.47;1.0.0.9;78.3.0
 //
-//10:39
-//RM 12/07/2024
+//15:36
+//RM 18/07/2024
 
 function replacer(key, value) {
     if (key === "msgs") {
